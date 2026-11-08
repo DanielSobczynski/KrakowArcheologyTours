@@ -215,10 +215,13 @@ a {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 35px;
+    align-items: stretch;
 }
 
 .tour-card {
     background: var(--white);
+    display: flex;
+    flex-direction: column;
 }
 
 .tour-card img {
@@ -230,6 +233,10 @@ a {
 
 .tour-content {
     padding: 32px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-start;
 }
 
 .tour-number {
@@ -253,6 +260,28 @@ a {
     font-weight: 700;
     border-bottom: 1px solid var(--brown);
     padding-bottom: 5px;
+    margin-top: auto;
+}
+
+.text-link:hover {
+    opacity: .65;
+}
+
+/* Future tour card */
+.tour-card--coming-soon img {
+    filter: saturate(.75);
+}
+
+.tour-status {
+    display: inline-block;
+    margin-top: auto;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .about {

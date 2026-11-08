@@ -17,10 +17,20 @@ const translations = {
 
         toursLabel: "EXPLORE KRAKÓW",
         toursTitle: "Choose your experience",
+
         tour1Title: "Rynek Underground",
         tour1Text: "Discover medieval Kraków beneath the Main Market Square. Explore archaeological remains and learn how the city developed through the centuries.",
+
         tour2Title: "Medieval Kraków",
         tour2Text: "Walk through the historic heart of Kraków. Discover medieval urban planning, architecture and the historical traces hidden in the city streets.",
+
+        tour3Title: "Kraków–Tyniec Bike Tour",
+        tour3Text: "Discover Kraków beyond the Old Town on a scenic cycling journey along both banks of the Vistula River. Ride to the historic Benedictine Abbey in Tyniec and explore its archaeological heritage.",
+
+        tour4Title: "Archaeology of Kraków and Lesser Poland",
+        tour4Text: "Discover the archaeological heritage of Kraków and the surrounding region. Explore the stories of prehistoric communities, ancient settlements and medieval life through archaeological discoveries and material remains.",
+        tour4Status: "Coming soon",
+
         tourButton: "Enquire about this tour →",
 
         aboutLabel: "MEET YOUR GUIDE",
@@ -60,10 +70,20 @@ const translations = {
 
         toursLabel: "POZNAJ KRAKÓW",
         toursTitle: "Wybierz swoją wycieczkę",
+
         tour1Title: "Podziemia Rynku",
         tour1Text: "Odkryj średniowieczny Kraków pod płytą Rynku Głównego. Poznaj pozostałości archeologiczne i dowiedz się, jak miasto rozwijało się na przestrzeni wieków.",
+
         tour2Title: "Średniowieczny Kraków",
         tour2Text: "Wybierz się na spacer po historycznym centrum Krakowa. Poznaj średniowieczny układ miasta, architekturę i ślady przeszłości ukryte w miejskiej przestrzeni.",
+
+        tour3Title: "Rowerem z Krakowa do Tyńca",
+        tour3Text: "Odkryj Kraków poza historycznym centrum podczas rowerowej wyprawy wzdłuż obu brzegów Wisły. Przemierz malowniczą trasę do zabytkowego Opactwa Benedyktynów w Tyńcu i poznaj jego dziedzictwo archeologiczne.",
+
+        tour4Title: "Archeologia Krakowa i Małopolski",
+        tour4Text: "Poznaj archeologiczne dziedzictwo Krakowa i okolic. Odkryj historię pradziejowych społeczności, dawnych osad i średniowiecznego życia regionu na podstawie odkryć archeologicznych i materialnych pozostałości przeszłości.",
+        tour4Status: "Wkrótce",
+
         tourButton: "Zapytaj o wycieczkę →",
 
         aboutLabel: "POZNAJ PRZEWODNIKA",
