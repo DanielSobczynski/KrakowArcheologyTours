@@ -1,4 +1,3 @@
-
 const translations = {
     en: {
         navTours: "Tours",
@@ -31,7 +30,7 @@ const translations = {
         tour4Text: "Discover the archaeological heritage of Kraków and the surrounding region. Explore the stories of prehistoric communities, ancient settlements and medieval life through archaeological discoveries and material remains.",
         tour4Status: "Coming soon",
 
-        tourButton: "Enquire about this tour →",
+        tourButton: "Book this tour →",
 
         aboutLabel: "MEET YOUR GUIDE",
         aboutTitle: "Archaeologist.<br>Local guide.<br>Storyteller.",
@@ -84,7 +83,7 @@ const translations = {
         tour4Text: "Poznaj archeologiczne dziedzictwo Krakowa i okolic. Odkryj historię pradziejowych społeczności, dawnych osad i średniowiecznego życia regionu na podstawie odkryć archeologicznych i materialnych pozostałości przeszłości.",
         tour4Status: "Wkrótce",
 
-        tourButton: "Zapytaj o wycieczkę →",
+        tourButton: "Zarezerwuj wycieczkę →",
 
         aboutLabel: "POZNAJ PRZEWODNIKA",
         aboutTitle: "Archeolog.<br>Przewodnik.<br>Miłośnik historii.",
@@ -138,5 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setLanguage(savedLanguage);
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const year = document.getElementById("year");
+    if (year) {
+        year.textContent = new Date().getFullYear();
+    }
 });
