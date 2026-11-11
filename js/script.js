@@ -74,7 +74,25 @@ const translations = {
         contactLabel: "PLAN YOUR VISIT",
         contactTitle: "Discover another side of Kraków.",
         contactText: "Interested in a tour? Get in touch to discuss availability, group size and your preferred experience.",
-        contactButton: "Contact me"
+        contactButton: "Contact me",
+        formName: "Your name",
+        formNamePlaceholder: "Your name",
+        formEmail: "Your email",
+        formEmailPlaceholder: "you@example.com",
+        formTopic: "What would you like to ask about?",
+        formTopicDefault: "Choose a topic",
+        formTopicTour: "A tour or availability",
+        formTopicPrivate: "A private or customised tour",
+        formTopicOther: "Something else",
+        formMessage: "Your message",
+        formMessagePlaceholder: "Write your message here...",
+        formPrivacy: "Your details will be used only to respond to your enquiry. This form is processed via Formspree.",
+        formSubmit: "Send message",
+        formSending: "Sending...",
+        formSuccess: "Thank you for your message. I will get back to you as soon as possible.",
+        formError: "Sorry, your message could not be sent. Please try again or email me directly.",
+        formNetworkError: "A connection problem occurred. Please try again or email me directly.",
+        formEmailAlternative: "Prefer email?"
     },
 
     pl: {
@@ -152,7 +170,25 @@ const translations = {
         contactLabel: "ZAPLANUJ WIZYTĘ",
         contactTitle: "Odkryj inne oblicze Krakowa.",
         contactText: "Zainteresowała Cię wycieczka? Skontaktuj się, aby omówić dostępne terminy, wielkość grupy i wybraną trasę.",
-        contactButton: "Skontaktuj się"
+        contactButton: "Skontaktuj się",
+        formName: "Imię i nazwisko",
+        formNamePlaceholder: "Twoje imię i nazwisko",
+        formEmail: "Adres e-mail",
+        formEmailPlaceholder: "twoj@email.com",
+        formTopic: "Czego dotyczy Twoje pytanie?",
+        formTopicDefault: "Wybierz temat",
+        formTopicTour: "Wycieczka lub dostępność terminów",
+        formTopicPrivate: "Wycieczka prywatna lub indywidualna",
+        formTopicOther: "Inne pytanie",
+        formMessage: "Wiadomość",
+        formMessagePlaceholder: "Wpisz tutaj swoją wiadomość...",
+        formPrivacy: "Twoje dane zostaną wykorzystane wyłącznie w celu udzielenia odpowiedzi na zapytanie. Formularz jest obsługiwany przez Formspree.",
+        formSubmit: "Wyślij wiadomość",
+        formSending: "Wysyłanie...",
+        formSuccess: "Dziękuję za wiadomość. Odpowiem najszybciej, jak to możliwe.",
+        formError: "Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz bezpośrednio na mój adres e-mail.",
+        formNetworkError: "Wystąpił problem z połączeniem. Spróbuj ponownie lub napisz bezpośrednio na mój adres e-mail.",
+        formEmailAlternative: "Wolisz napisać e-mail?"
     }
 };
 
@@ -164,6 +200,13 @@ function setLanguage(lang) {
         const key = element.dataset.i18n;
         if (Object.prototype.hasOwnProperty.call(translations[selected], key)) {
             element.innerHTML = translations[selected][key];
+        }
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+        const key = element.dataset.i18nPlaceholder;
+        if (Object.prototype.hasOwnProperty.call(translations[selected], key)) {
+            element.setAttribute("placeholder", translations[selected][key]);
         }
     });
 
@@ -216,4 +259,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const year = document.getElementById("year");
     if (year) year.textContent = new Date().getFullYear();
+
+    // Formspree AJAX submission: keeps visitors on the website after sending.
+    const contactForm = document.getElementById("contact-form");
+    const formStatus = document.getElementById("contact-form-status");
+
+    if (contactForm && formStatus) {
+        contactForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const submitButton = contactForm.querySelector("[type=\"submit\"]");
+            const lang = document.documentElement.lang === "pl" ? "pl" : "en";
+            const messages = translations[lang];
+
+            formStatus.hidden = true;
+            formStatus.textContent = "";
+            formStatus.className = "form-status";
+            submitButton.disabled = true;
+            submitButton.textContent = messages.formSending;
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: "POST",
+                    body: new FormData(contactForm),
+                    headers: { "Accept": "application/json" }
+                });
+
+                const result = await response.json().catch(() => null);
+
+                if (response.ok) {
+                    formStatus.textContent = messages.formSuccess;
+                    formStatus.classList.add("is-success");
+                    contactForm.reset();
+                } else {
+                    formStatus.textContent = messages.formError;
+                    formStatus.classList.add("is-error");
+                }
+            } catch (error) {
+                formStatus.textContent = messages.formNetworkError;
+                formStatus.classList.add("is-error");
+            } finally {
+                formStatus.hidden = false;
+                submitButton.disabled = false;
+                submitButton.textContent = messages.formSubmit;
+            }
+        });
+    }
 });
